@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+option go_package = "gitlab.ptsecurity.com/appsec-platform/ptbb-integration-grpc-api/pkg/api/v1";
+
+package ptbb_integration_grpc_api.api.v1;
+
+import "google/api/annotations.proto";
+import "google/api/field_behavior.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "buf/validate/validate.proto";
+
+message StartScanRequest {
+    string WorkflowUUID = 1 [
+        (google.api.field_behavior) = REQUIRED,
+        (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "Current workflow UUID",
+            example: "\"2438ac3c-37eb-4902-adef-ed16b4431030\""
+        },
+        (buf.validate.field).string.uuid = true
+    ];
+    string SiteURL = 2 [
+        (google.api.field_behavior) = REQUIRED,
+        (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "Target's URL for scan",
+            example: "\"https://ya.ru\""
+        },
+        (buf.validate.field).required = true
+    ];
+}
+
+message StartScanResult {
+    string SiteUUID = 1 [
+        (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "Site's UUID",
+            example: "\"6e3fa092-169f-45f0-8bd3-3303582df766\""
+        }
+    ];
+    uint32 ScanID = 2 [
+        (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "Scan's ID",
+            example: "1"
+        }
+    ];
+}
+
+service DAST {
+    rpc StartScan(StartScanRequest) returns(StartScanResult) {
+        option (google.api.http) = {
+            post: "/v1/start-scan"
+            body: "*"
+        };
+
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Cannot start scan"
+            responses: [
+                {
+                    key: "400"
+                    value: {
+                        description: "previous scan is not finished yet";
+                    }
+                },
+                {
+                    key: "401"
+                    value: {
+                        description: "API Token is invalid";
+                    }
+                }
+            ]
+        };
+    }
+}

@@ -1,0 +1,11 @@
+components:
+  platform.workflow_manager:
+    title: Workflow manager
+    entity: collections
+    aspects:
+      - workflow
+    links:
+      - id: platform.bpmn
+        direction: <-->
+
+  # ====================================================================================================================

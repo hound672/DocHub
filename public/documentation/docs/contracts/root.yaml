@@ -1,0 +1,13 @@
+imports:
+  - events/root.yaml
+
+docs:
+  asoc.contracts:
+    location: Контракты
+    type: markdown
+    source: contracts.md
+
+  example:
+    location: Контракты/Уязвимости
+    source: example.proto
+    type: markdown

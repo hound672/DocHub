@@ -1,0 +1,9 @@
+components:
+  core.controller:
+    title: Контроллер
+    entity: collections
+    links:
+      - id: core.dast
+        direction: <-->
+      - id: core.sast
+        direction: <-->

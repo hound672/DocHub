@@ -1,0 +1,19 @@
+docs:
+  asoc.scanner_adapters:
+    type: markdown
+    location: Сканер адаптеры
+    description: Сканер адаптеры
+    source: scanner_adapters.md
+    subjects:
+      - asoc.aspects.Сканер адаптеры
+      - asoc.scanner_adapters
+
+  asoc.scanner_adapters.scan_profile_config:
+    source: scan_profile_config.puml
+    type: PlantUML
+    location: Сканер адаптеры/Профиль сканирования
+
+  asoc.scanner_adapters.start_scan:
+    source: start_scan.puml
+    type: PlantUML
+    location: Сканер адаптеры/Запуск сканирования

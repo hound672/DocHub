@@ -1,0 +1,11 @@
+docs:
+  asoc.conception.workflow:
+    type: markdown
+    source: workflow.md
+    description: Workflow
+    location: Концепции/Workflow
+
+  asoc.conception.workflow.schema:
+    type: plantuml
+    source: workflow.puml
+    location: Концепции/Workflow/Схема

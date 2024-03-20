@@ -1,0 +1,14 @@
+imports:
+  - bpmn.yaml
+#  - broker.yaml  # remove broker for a while, since they aren't inm MVP
+#  - workflow_manager.yaml  # remove workflow_manager for a while, since they aren't inm MVP
+  - iam.yaml
+  - vulnerability_management.yaml
+  - scan_management.yaml
+
+components:
+  platform:
+    title: Платформа
+    entity: collections
+    aspects:
+      - platform

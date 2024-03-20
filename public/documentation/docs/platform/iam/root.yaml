@@ -1,0 +1,20 @@
+docs:
+  asoc.platform.auth:
+    type: markdown
+    location: Платформа/IAM
+    description: Аутентификация/авторизация
+    source: iam.md
+    subjects:
+      - authN
+      - authZ
+      - platform.iam
+
+  asoc.platform.auth.authN_diagram:
+    type: plantuml
+    location: Платформа/IAM/AuthN diagram
+    source: authN_diagram.puml
+
+  asoc.platform.auth.authZ_diagram:
+    type: plantuml
+    location: Платформа/IAM/AuthZ diagram
+    source: authZ_diagram.puml

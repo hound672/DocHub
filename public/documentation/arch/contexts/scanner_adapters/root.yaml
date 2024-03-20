@@ -1,0 +1,13 @@
+contexts:
+  scanner_adapters:
+    title: Общий контекст сканер адаптеров
+    location: Сканер адаптер
+    extra-links: false
+    components:
+      - scanner_adapter
+      - scanner_adapter.dast
+      - scanner_adapter.sast
+      - scanner_adapter.external
+      - scanner_adapter.external.data_mapper
+      - scanner_adapter.external.runner
+      - scanner_adapter.external.core

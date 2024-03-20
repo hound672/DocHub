@@ -1,0 +1,100 @@
+components:
+  platform.scan_management:
+    title: Управление сканированием
+    entity: collections
+    aspects:
+      - scan
+
+  # ====================================================================================================================
+
+  platform.scan_management.asoc_backend:
+    title: ASOC Backend
+    entity: collections
+    aspects:
+      - scan
+
+  platform.scan_management.asoc_backend.db:
+    title: ASOC Database
+    entity: database
+    technologies:
+      - postgreSQL
+
+  platform.scan_management.asoc_backend.ui:
+    title: UI
+    entity: component
+    links:
+      - id: platform.scan_management.asoc_backend.wac
+        direction: -->
+        title: REST
+
+  # ====================================================================================================================
+
+  platform.scan_management.asoc_backend.wac:
+    title: WAC
+    entity: component
+    aspects:
+      - scan
+    technologies:
+      - golang
+    links:
+      - id: platform.scan_management.asoc_backend.db
+        direction: -->
+      - id: platform.vulnerability_management.defect_dojo
+        direction: -->
+      - id: platform.bpmn
+        direction: -->
+
+  platform.scan_management.asoc_backend.wp:
+    title: Workflow Processor
+    entity: component
+    aspects:
+      - scan
+      - entities.vulnerability
+    technologies:
+      - golang
+      - temporal
+    links:
+      - id: platform.scan_management.asoc_backend.infr
+        direction: <-->
+        title: PTAI Server
+      - id: platform.scan_management.asoc_backend.db
+        direction: -->
+      - id: platform.vulnerability_management.defect_dojo
+        direction: -->
+        title: DDJ SDK
+      - id: platform.bpmn
+        direction: <--
+
+  # ====================================================================================================================
+
+  platform.scan_management.asoc_backend.infr:
+    title: PTAI Infr
+    entity: component
+    aspects:
+      - scan
+    technologies:
+      - csharp
+    links:
+      - id: platform.scan_management.asoc_backend.jsa
+        direction: -->
+
+      - id: platform.scan_management.asoc_backend.webengine
+        direction: -->
+
+  platform.scan_management.asoc_backend.jsa:
+    title: JSA
+    entity: component
+    aspects:
+      - scan
+    technologies:
+      - csharp
+
+  platform.scan_management.asoc_backend.webengine:
+    title: WebEngine
+    entity: component
+    aspects:
+      - scan
+    technologies:
+      - python
+
+  # ====================================================================================================================

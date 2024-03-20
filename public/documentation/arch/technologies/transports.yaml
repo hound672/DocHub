@@ -1,0 +1,11 @@
+technologies:
+  items:
+    REST:
+      title: REST
+      section: transports
+      status: adopt
+
+    gRPC:
+      title: gRPC
+      section: transports
+      status: adopt

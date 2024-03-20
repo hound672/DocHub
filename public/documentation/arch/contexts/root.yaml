@@ -1,0 +1,62 @@
+imports:
+  - vulnerabilities/root.yaml
+  - platform/root.yaml
+  - scanner_adapters/root.yaml
+
+contexts:
+  asoc:
+    title: ASOC
+    location: Общий контекст платформы
+#    extra-links: true
+    components:
+      - "*"
+      - "*.*"
+      - "*.*.*"
+#    source: >
+#      (
+#        /* Определяем шаблон для идентификаторов */
+#        $isl2 := /^([^\.]*)(\.([^\.]*))?$/;
+#        /* Генерируем список компонентов L1 ровня */
+#        $result := $mergedeep($.components.$spread().(
+#          $id := $keys()[0];
+#          $node := $.*;
+#          $levels := $isl2($id).groups;
+#          /* Формируем ноду */
+#          $node :=
+#            /* Если это компонент уровня L2 */
+#            $levels[3]
+#            /* Создаем виртуальный компонент L1 с информацией о связях */
+#            ? $merge([
+#              {
+#                $levels[1]: {
+#                  "links":
+#                    $distinct($node.links.{
+#                      /* Преобразуем идентификатор связи к L1 */
+#                      "id": $split(id, ".")[1],
+#                      "title":  title,
+#                      "direction": "--"
+#                    })[id != $levels[1]]
+#                }
+#              }
+#            ])
+#            /* Иначе, преобразуем связи компонента к уровню L1 */
+#            : $merge([
+#              {
+#                $id: $merge([$.*, {
+#                  "links":
+#                    $distinct($node.links.{
+#                      /* Преобразуем идентификатор связи к L1 */
+#                      "id": $split(id, ".")[1],
+#                      "title":  title,
+#                      "direction": "--"
+#                    })[id != $levels[1]]
+#                }])
+#              }
+#            ])
+#        ));
+#        /* Перезаписываем данные манифеста новыми компонентами */
+#        $merge([$,
+#          { "components": $result}
+#        ]);
+#      )
+#

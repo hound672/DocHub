@@ -1,0 +1,7 @@
+technologies:
+  items:
+    temporal:
+      title: Temporal
+      link: https://temporal.io
+      section: bpmn
+      status: adopt

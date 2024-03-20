@@ -1,0 +1,101 @@
+@startuml
+
+skinparam linetype ortho
+
+class AuthProfileType {
+	+ HTTPBasic
+	+ HTMLAutoForm
+	+ HTMLFormBased
+	+ RawCookie
+	+ APIKey
+	+ Bearer
+}
+
+class AuthProfile {
+    uuid: uuid
+    product: Product
+    name: text
+    type: AuthProfileTypeEnum
+    settings: AuthProfileSettings
+    creator_uuid: uuid
+    creator_username: string
+    created_at: time
+    deleted_at: time
+}
+
+class AuthProfileSettings {
+}
+
+class AuthProfileSettingsHttpBasic {
+    credentials: AuthProfileCredentials
+    test_string: str
+}
+
+class AuthProfileSettingsHtmlAutoForm {
+    credentials: AuthProfileCredentials
+    form_url: str
+    success_string: str
+}
+
+class AuthProfileSettingsHtmlFormBased {
+    credentials: AuthProfileCredentials
+    form_url: str
+    form_xpath: str
+    username_field: str
+    password_field: str
+    regexp_of_success: str
+    submit_value: str
+}
+
+class AuthProfileSettingsRawCookie {
+    cookies: []str
+    success_url: str
+    regexp_of_success: str
+}
+
+class AuthProfileSettingsApiKey {
+    place: ApiKeyPlace
+    name: str
+    value: str
+    success_url: str
+    success_string: str
+}
+
+class ApiKeyPlace {
+    COOKIE
+    HEADER
+    QUERY
+}
+
+class AuthProfileSettingsBearer {
+    token: str
+    success_url: str
+    success_string: str
+}
+
+class AuthProfileCredentials {
+    username: str
+    password: str
+}
+
+' links
+
+AuthProfile -> AuthProfileType
+AuthProfileSettings <- AuthProfile
+
+AuthProfileSettings <|-- AuthProfileSettingsHttpBasic
+AuthProfileSettingsHttpBasic -d-> AuthProfileCredentials
+
+AuthProfileSettings <|-- AuthProfileSettingsHtmlAutoForm
+AuthProfileSettingsHtmlAutoForm -d-> AuthProfileCredentials
+
+AuthProfileSettings <|-- AuthProfileSettingsHtmlFormBased
+AuthProfileSettingsHtmlFormBased -d-> AuthProfileCredentials
+
+AuthProfileSettings <|-- AuthProfileSettingsRawCookie
+AuthProfileSettings <|-- AuthProfileSettingsApiKey
+AuthProfileSettingsApiKey -down-> ApiKeyPlace
+
+AuthProfileSettings <|-- AuthProfileSettingsBearer
+
+@enduml

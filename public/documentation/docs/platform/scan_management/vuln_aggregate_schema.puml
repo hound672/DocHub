@@ -1,0 +1,27 @@
+@startuml
+
+class SASTInsecureSSLProtocol {
+}
+
+class DASTRecommendedTLSProtocolVersion {
+}
+
+class DASTInsecureSSLProtocol {
+}
+
+class DASTDeprecatedTLSProtocol {
+}
+
+SASTInsecureSSLProtocol <-- DASTRecommendedTLSProtocolVersion
+SASTInsecureSSLProtocol <-- DASTInsecureSSLProtocol
+SASTInsecureSSLProtocol <-- DASTDeprecatedTLSProtocol
+
+class SASTSQLiInjection {
+}
+
+class DASTSQLiInjection {
+}
+
+SASTSQLiInjection -- DASTSQLiInjection
+
+@enduml

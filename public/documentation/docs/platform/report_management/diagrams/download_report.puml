@@ -1,0 +1,55 @@
+@startuml
+title Скачивание отчета
+
+actor User as User
+
+box "[[/architect/components/asoc.platform.report_management ReportManagement]]" #LightGray
+    participant "[[/architect/components/asoc.platform.report_management.bff BFF]]" as BFF
+    participant "[[/architect/components/asoc.platform.report_management.report_downloader ReportDownloader]]" as ReportDownloader
+end box
+
+box "[[/architect/components/asoc.platform.vulnerability_management VulnManagement]]" #LightGreen
+    participant "[[/architect/components/asoc.platform.vulnerability_management.vuln_storage VulnStorage]]" as VulnStorage
+    participant "[[/architect/components/asoc.platform.vulnerability_management.kb KnowledgeBase]]" as KnowledgeBase
+end box
+
+box "[[/architect/components/asoc.platform.broker Broker]]" #LightYellow
+    participant "[[/architect/components/asoc.platform.broker.events EventBroker]]" as EventBroker
+end box
+
+User -> BFF: Запрос на скачивание отчета
+
+BFF -> ReportDownloader: Запрос на скачивание отчета
+
+ReportDownloader -> ReportDownloader: Проверка наличия отчета в кеше
+
+group Отчет есть в кеше
+    ReportDownloader -> BFF: Файл с отчетом
+    BFF -> User: Файл с отчетом
+end
+
+group Отчета нет в кеше
+    ReportDownloader -> ReportDownloader: Создание задачи на генерацию файла с отчетом
+
+    ReportDownloader -> BFF: Идентификатор задачи
+    BFF -> User: Идентификатор задачи
+
+    group Асинхронная задача
+        ReportDownloader -> VulnStorage: Запрос данных по отчету
+        VulnStorage -> ReportDownloader
+
+        ReportDownloader -> KnowledgeBase: Запрос данных локализации
+        KnowledgeBase -> ReportDownloader:
+
+        ReportDownloader -> ReportDownloader: Генерация файла с отчетом
+        ReportDownloader -> ReportDownloader: Кеширование файла с отчетом
+
+        ReportDownloader --> EventBroker: Событие о готовности файла с отчетом
+
+    end
+
+    User -> User: Получение уведомления о готовности отчета
+    User -> User: Работа по схеме "Отчет есть в кеше"
+end
+
+@enduml

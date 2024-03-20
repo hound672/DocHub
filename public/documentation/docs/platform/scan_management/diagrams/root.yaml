@@ -1,0 +1,11 @@
+docs:
+  asoc.platform.scan_managment.diagrams:
+    type: markdown
+    location: Платформа/Управление сканированием/Диаграммы
+    description: Диаграммы процессов компонента
+    source: diagrams.md
+    subjects:
+      - asoc.platform.vulnerability_management
+      - asoc.platform.vulnerability_management.*
+
+# puml diagrams

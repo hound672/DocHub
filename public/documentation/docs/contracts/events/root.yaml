@@ -1,0 +1,9 @@
+imports:
+  - new_vulnerability/root.yaml
+
+#docs:
+#  asoc.contracts.events.vulnerability_found:
+#    title: Найдена уязвимость
+#    location: Контракты/События/Новая уязвимость
+#    type: asyncapi
+#    source: vulnerability_found.yaml

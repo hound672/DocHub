@@ -1,0 +1,11 @@
+imports:
+  - vulnerability/root.yaml
+  - scan_settings/root.yaml
+
+docs:
+  asoc.entities:
+    type: markdown
+    source: entities.md
+    location: Сущности
+    subjects:
+      - entities

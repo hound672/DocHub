@@ -1,0 +1,11 @@
+imports:
+  - controller.yaml
+  - dast.yaml
+  - sast.yaml
+
+components:
+  core:
+    title: Ядра
+    entity: collections
+    aspects:
+      - core

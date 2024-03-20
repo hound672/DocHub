@@ -1,0 +1,12 @@
+aspects:
+  entities:
+    title: Сущности
+    location: Сущности
+
+  entities.vulnerability:
+    title: Уязвимость
+    location: Сущности/Уязвимость
+
+  entities.project:
+    title: Проект
+    location: Проект

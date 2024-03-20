@@ -1,0 +1,7 @@
+docs:
+  asoc.platform.scan_managment.models:
+    source: models.md
+    type: markdown
+    location: Платформа/Управление сканированием/Модели данных
+    subjects:
+      - asoc.platform.scan_management

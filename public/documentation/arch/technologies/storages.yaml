@@ -1,0 +1,19 @@
+technologies:
+  items:
+    postgreSQL:
+      title: PostgreSQL
+      link: https://www.postgresql.org/
+      section: databases
+      status: adopt
+
+    minio:
+      title: MinIO
+      link: https://min.io/
+      section: databases
+      status: adopt
+
+    redis:
+      title: Redis
+      link: https://redis.io/
+      section: databases
+      status: adopt

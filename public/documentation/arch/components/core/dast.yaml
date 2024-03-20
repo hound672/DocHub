@@ -1,0 +1,4 @@
+components:
+  core.dast:
+    title: DAST
+    entity: collections

@@ -1,0 +1,9 @@
+contexts:
+  iam:
+    title: IAM
+    location: Платформа/IAM
+    components:
+      - platform.iam
+      - platform.iam.*
+      - platform.iam.*.*
+      - platform.iam.*.*.*

@@ -1,0 +1,85 @@
+components:
+  platform.iam:
+    title: IAM
+    entity: collections
+    aspects:
+      - authN
+      - authZ
+
+  # ====================================================================================================================
+
+  platform.iam.casgate:
+    title: Casgate
+    entity: collections
+
+  platform.iam.casgate.backend:
+    title: Backend
+    entity: component
+    technologies:
+      - golang
+    links:
+      - id: platform.iam.casgate.db
+        direction: -->
+
+  platform.iam.casgate.db:
+    title: Хранилище пользователей
+    entity: database
+    technologies:
+      - postgreSQL
+    aspects:
+      - authZ.role
+      - authZ.permission
+      - authZ.domain
+      - authZ.external_idp
+
+  platform.iam.casgate.ui:
+    title: Front APP
+    entity: component
+
+  # ====================================================================================================================
+
+  platform.iam.auth_proxy:
+    title: AuthProxy
+    entity: collections
+
+  platform.iam.auth_proxy.backend:
+    title: AuthProxy backend
+    entity: component
+    technologies:
+      - golang
+    links:
+      - id: platform.iam.auth_proxy.db
+        direction: -->
+      - id: platform.iam.casgate.backend
+        direction: -->
+
+  platform.iam.auth_proxy.db:
+    title: Хранили сессий
+    entity: database
+    technologies:
+      - redis
+
+  # ====================================================================================================================
+
+  platform.iam.admin_ui:
+    title: Admin UI
+    entity: collections
+
+  platform.iam.admin_ui.backend:
+    title: Backend
+    entity: component
+    technologies:
+      - golang
+    links:
+      - id: platform.iam.auth_proxy.backend
+        direction: -->
+
+  platform.iam.admin_ui.front:
+    title: Front APP
+    entity: component
+    links:
+      - id: platform.iam.casgate.ui
+        direction: -->
+        title: Redirect to login form \n (OIDC)
+
+  # ====================================================================================================================
