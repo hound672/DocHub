@@ -1,4 +1,0 @@
-components:
-  core.sast:
-    title: SAST
-    entity: collections

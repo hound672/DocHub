@@ -1,9 +1,0 @@
-imports:
-  - dast/root.yaml
-
-docs:
-  asoc.entities.scan_settings:
-    type: markdown
-    source: scan_settings.md
-    description: Настройки сканирования
-    location: Сущности/Настройки сканирования

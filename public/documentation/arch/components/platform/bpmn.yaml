@@ -1,6 +1,0 @@
-components:
-  platform.bpmn:
-    title: Temporal
-    entity: component
-    technologies:
-      - temporal

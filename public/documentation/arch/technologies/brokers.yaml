@@ -1,7 +1,0 @@
-technologies:
-  items:
-    kafka:
-      title: Kafka
-      link: https://kafka.apache.org/
-      section: brokers
-      status: adopt
